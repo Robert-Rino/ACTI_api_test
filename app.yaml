@@ -1,0 +1,53 @@
+service: acti-api-test
+runtime: python27
+api_version: 1
+threadsafe: true
+
+
+libraries:
+- name: ssl
+  version: latest
+
+handlers:
+- url: /.*
+  script: app.app
+
+skip_files:
+- ^(.*/)?#.*#$
+- ^(.*/)?.*~$
+- ^(.*/)?.*\.py[co]$
+- ^(.*/)?.*/RCS/.*$
+- ^(.*/)?\..*$
+- ^.git/.*
+
+
+# https://cloud.google.com/appengine/docs/about-the-standard-environment#instance_classes
+# default: F1 (only automatic_scaling can use front-end instance)
+# F4: {RAM: 512 MB RAM, CPU: 2.4GHz}
+# Use F4 instance, otherwise the /feed/facebook api will get DeadlineExceedError
+# https://cloud.google.com/appengine/articles/deadlineexceedederrors
+instance_class: F4
+
+automatic_scaling:
+  # The minimum number of idle instances that
+  # App Engine should maintain for this version.
+  min_idle_instances: 1
+
+  # The maximum number of idle instances
+  # that App Engine should maintain for this version.
+  # The default value is "automatic."
+  max_idle_instances: 5
+
+  # The minimum amount of time that
+  # App Engine should allow a request to wait in the pending queue
+  # before starting a new instance to handle it. The default value is "0ms"
+  # min_pending_latency: 30ms
+
+  # The maximum amount of time that App Engine should allow a request to wait in the pending queue before starting a new instance to handle it. The default value is "30ms".
+  max_pending_latency: 300ms
+
+  # Optional.
+  # The number of concurrent requests an automatic scaling instance can accept
+  # before the scheduler spawns a new instance
+  # (Default: automatic, Maximum: 80).
+  # max_concurrent_requests: 8
