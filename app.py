@@ -19,8 +19,8 @@ def facedata():
     # logging.info(request.headers)
     # logging.info(request.)
     # logging.info(request.headers)
-    # logging.info("from data {}".format(request.form))
-    # logging.info("json data {}".format(request.json))
+    logging.info("from data {}".format(request.form))
+    logging.info("json data {}".format(request.json))
     return 'ok'
 
 if __name__ == '__main__':
