@@ -1,4 +1,4 @@
-#!/Users/RobertRino/Repository/Python/Tagtoo/ACTi-api-test/env/bin/python
+#!/Users/RobertRino/Repository/Python/Tagtoo/ACTi-api-test/env/bin/python3.6
 
 # -*- coding: utf-8 -*-
 import re
